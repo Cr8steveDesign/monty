@@ -47,4 +47,3 @@ void error_file(char *argv)
 	fprintf(stderr, "Error: Can't open file %s\n", argv);
 	exit(EXIT_FAILURE);
 }
-
