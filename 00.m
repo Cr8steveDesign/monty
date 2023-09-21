@@ -1,11 +1,5 @@
-push 1
-push 2
-push 3
-pall
-pall
-pop
-pall
-pop
-pall
-pop
+push 1-5
+push -25
+hello
+push 30
 pall
