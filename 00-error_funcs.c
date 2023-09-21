@@ -9,7 +9,7 @@
 
 void error_not_found(char **all_lines, int idx, char *commands)
 {
-	printf("L%d: unknown instruction %s\n", idx + 1, commands);
+	printf("L%d: unknown instruction %s\n", idx, commands);
 	free_arr(all_lines);
 	free_stack(&(glob.stack));
 	exit(EXIT_FAILURE);

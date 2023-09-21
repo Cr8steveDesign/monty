@@ -32,7 +32,7 @@ void interpreter(instruction_t ops_array[], char **all_lines)
 		glob.stack = Our_Stack;
 
 		if (flag == 0)
-			error_not_found(all_lines, idx, commands[0]);
+			error_not_found(all_lines, idx + 1, commands[0]);
 		idx++;
 	}
 	all_freer();
