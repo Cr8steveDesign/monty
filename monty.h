@@ -73,7 +73,7 @@ void op_pall(stack_t **stack, unsigned int line_number);
 void op_pint(stack_t **stack, unsigned int line_number);
 
 globs_t glob;
-
+void interpreter(instruction_t ops_array[], char **all_lines);
 /*Utilities - Convert alphabet to integer*/
 int _atoi(char *s);
 stack_t *traverse_end(stack_t *stack);
@@ -81,7 +81,8 @@ stack_t *add_dnodeint_end(stack_t **head, const int n);
 char *_strdup(char *str);
 void free_stack(stack_t **stack);
 void free_arr(char **array);
-int count_lines(char *argv);
-char **load_lines(char *argv, int len);
+
+/*ERROR MESSAGES*/
+void error_not_found(char **all_lines, int idx, char *commands);
 
 #endif /*MONTY_H*/
