@@ -34,3 +34,22 @@ void free_stack(stack_t **stack)
 		*stack = temp;
 	}
 }
+
+/**
+ * all_freer - Frees both the stack and all lines
+ * Return: Always void
+ */
+void all_freer(void)
+{
+	if (glob.all_lines != NULL)
+	{
+		free_arr(glob.all_lines);
+		glob.all_lines = NULL;
+	}
+
+	if (glob.stack != NULL)
+	{
+		free_stack(&(glob.stack));
+		glob.stack = NULL;
+	}
+}

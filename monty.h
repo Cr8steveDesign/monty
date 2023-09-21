@@ -35,6 +35,8 @@ typedef struct stack_s
  * @prog_name: Name of File
  * @top: Pointer to Node at the top
  * @btm: Pointer to bottom of the stack (head)
+ * @stack: Pointer to the stack
+ * @all_lines: All read lines
  *
  * Description: Structure of all global variables
  */
@@ -42,10 +44,12 @@ typedef struct globs
 {
 	int TOS1;
 	int TOS2;
-	char *arg;
+	char **arg;
 	char *prog_name;
 	stack_t *top;
 	stack_t *btm;
+	stack_t *stack;
+	char **all_lines;
 } globs_t;
 
 extern globs_t glob;
@@ -71,6 +75,9 @@ void op_push(stack_t **stack, unsigned int line_number);
 void op_pop(stack_t **stack, unsigned int line_number);
 void op_pall(stack_t **stack, unsigned int line_number);
 void op_pint(stack_t **stack, unsigned int line_number);
+void op_swap(stack_t **stack, unsigned int line_number);
+void op_add(stack_t **stack, unsigned int line_number);
+void op_nop(stack_t **stack, unsigned int line_number);
 
 globs_t glob;
 void interpreter(instruction_t ops_array[], char **all_lines);
@@ -78,9 +85,12 @@ void interpreter(instruction_t ops_array[], char **all_lines);
 int _atoi(char *s);
 stack_t *traverse_end(stack_t *stack);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
+stack_t *del_dnodeint_end(stack_t **head);
+
 char *_strdup(char *str);
 void free_stack(stack_t **stack);
 void free_arr(char **array);
+void all_freer(void);
 
 /*ERROR MESSAGES*/
 void error_not_found(char **all_lines, int idx, char *commands);

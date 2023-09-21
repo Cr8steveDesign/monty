@@ -18,7 +18,7 @@ void interpreter(instruction_t ops_array[], char **all_lines)
 		i = 0, token = strtok(all_lines[idx], " ");
 		commands[0] = token;
 		token = strtok(NULL, " ");
-		commands[1] = token, glob.arg = commands[1];
+		commands[1] = token, glob.arg = commands;
 
 		for (i = 0; ops_array[i].opcode != NULL; i++)
 		{
@@ -29,10 +29,11 @@ void interpreter(instruction_t ops_array[], char **all_lines)
 				break;
 			}
 		}
+		glob.stack = Our_Stack;
+
 		if (flag == 0)
 			error_not_found(all_lines, idx + 1, commands[0]);
 		idx++;
 	}
-	free_arr(all_lines);
-	free_stack(&Our_Stack);
+	all_freer();
 }

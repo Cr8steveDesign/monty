@@ -15,7 +15,10 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 
 	lastNode = malloc(sizeof(stack_t));
 	if (!lastNode)
-		return (NULL);
+	{
+		all_freer();
+		err_malloc();
+	}
 
 	lastNode->n = n;
 
@@ -25,6 +28,8 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 		lastNode->next = NULL;
 		*head = lastNode;
 		glob.TOS1 = lastNode->n;
+		glob.top = lastNode;
+		glob.btm = lastNode->prev;
 	}
 	else
 	{
@@ -37,6 +42,8 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 
 		glob.TOS1 = lastNode->n;
 		glob.TOS2 = lastNode->prev->n;
+		glob.top = lastNode;
+		glob.btm = lastNode->prev;
 	}
 
 	return (lastNode);

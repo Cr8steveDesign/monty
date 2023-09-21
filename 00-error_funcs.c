@@ -11,6 +11,7 @@ void error_not_found(char **all_lines, int idx, char *commands)
 {
 	printf("L%d: unknown instruction %s\n", idx + 1, commands);
 	free_arr(all_lines);
+	free_stack(&(glob.stack));
 	exit(EXIT_FAILURE);
 }
 
@@ -46,3 +47,4 @@ void error_file(char *argv)
 	fprintf(stderr, "Error: Can't open file %s\n", argv);
 	exit(EXIT_FAILURE);
 }
+
