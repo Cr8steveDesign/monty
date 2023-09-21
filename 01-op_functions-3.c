@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
- * op_mod - Mod two TOS1 and TOS2 and pops TOS1
+ * op_div- Div two TOS1 and TOS2 and pops TOS1
  * @stack: The Stack
  * @line_number: Line where command is
  * Return: Always Void
