@@ -1,6 +1,8 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define _GNU_SOURCE
+
 /*include header files*/
 #include <stdio.h>
 #include <stddef.h>
@@ -8,9 +10,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <string.h>
-
-#define _POSIX_C_SOURCE 200809L
-#define __GNU_SOURCE
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -29,6 +28,29 @@ typedef struct stack_s
 } stack_t;
 
 /**
+ * struct globs - Structure of all globals
+ * @TOS1: Value at top of stack (TOS 1)
+ * @TOS2: Value under top of stack (TOS 2)
+ * @arg: Argument to the opcode command
+ * @prog_name: Name of File
+ * @top: Pointer to Node at the top
+ * @btm: Pointer to bottom of the stack (head)
+ *
+ * Description: Structure of all global variables
+ */
+typedef struct globs
+{
+	int TOS1;
+	int TOS2;
+	char *arg;
+	char *prog_name;
+	stack_t *top;
+	stack_t *btm;
+} globs_t;
+
+extern globs_t glob;
+
+/**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
  * @f: function to handle the opcode
@@ -43,20 +65,23 @@ typedef struct instruction_s
 } instruction_t;
 
 /*ARRAY OF ALL THE LINES */
-
-void free_arr(char **array);
-void print_testign(char **array);
+char **read_lines(char *argv);
 
 void op_push(stack_t **stack, unsigned int line_number);
 void op_pop(stack_t **stack, unsigned int line_number);
 void op_pall(stack_t **stack, unsigned int line_number);
+void op_pint(stack_t **stack, unsigned int line_number);
 
-extern char *item;
+globs_t glob;
 
 /*Utilities - Convert alphabet to integer*/
 int _atoi(char *s);
 stack_t *traverse_end(stack_t *stack);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
 char *_strdup(char *str);
+void free_stack(stack_t **stack);
+void free_arr(char **array);
+int count_lines(char *argv);
+char **load_lines(char *argv, int len);
 
 #endif /*MONTY_H*/

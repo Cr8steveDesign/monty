@@ -24,6 +24,7 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 		lastNode->prev = *head;
 		lastNode->next = NULL;
 		*head = lastNode;
+		glob.TOS1 = lastNode->n;
 	}
 	else
 	{
@@ -33,6 +34,9 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 		lastNode->prev = current;
 		current->next = lastNode;
 		lastNode->next = NULL;
+
+		glob.TOS1 = lastNode->n;
+		glob.TOS2 = lastNode->prev->n;
 	}
 
 	return (lastNode);

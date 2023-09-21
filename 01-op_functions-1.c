@@ -9,25 +9,13 @@
 void op_push(stack_t **stack, unsigned int line_number)
 {
 	int number = 0;
-	stack_t *new_node = NULL;
 
 	(void)stack;
 	(void)line_number;
-	new_node = malloc(sizeof(stack_t));
 
-	number = atoi(item);
-	new_node->n = number;
-	new_node->next = NULL;
-
-	if (stack == NULL)
-	{
-		*stack = new_node;
-		new_node->prev = NULL;
-	}
+	number = atoi(glob.arg);
 
 	add_dnodeint_end(stack, number);
-
-	printf("The Push command was found at line %d\n", line_number);
 }
 
 /**
@@ -40,8 +28,6 @@ void op_pop(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
-
-	printf("The Pop command was found at line %d\n", line_number);
 }
 
 /**
@@ -77,5 +63,11 @@ void op_pint(stack_t **stack, unsigned int line_number)
 	(void)stack;
 	(void)line_number;
 
-	printf("The Pall command was found at line %d\n", line_number);
+	if (glob.TOS1 == -99)
+	{
+		fprintf(stderr, "Stack is empty!\n");
+		exit(EXIT_FAILURE);
+	}
+	else
+		printf("%d\n", glob.TOS1);
 }
