@@ -84,5 +84,8 @@ void free_arr(char **array);
 
 /*ERROR MESSAGES*/
 void error_not_found(char **all_lines, int idx, char *commands);
+void err_alllines(char **alllines1);
+void err_malloc(void);
+void error_file(char *argv);
 
 #endif /*MONTY_H*/
